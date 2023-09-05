@@ -161,13 +161,15 @@ namespace InjectorSharp
 
         private bool Is64BitExe(string exeFilePath)
         {
-            using (BinaryReader reader = new BinaryReader(File.OpenRead(exeFilePath)))
+            using (BinaryReader reader = new(File.OpenRead(exeFilePath)))
             {
                 reader.BaseStream.Seek(0x3C, SeekOrigin.Begin);
-                uint peOffset = reader.ReadUInt32();
-                reader.BaseStream.Seek(peOffset + 0x4, SeekOrigin.Begin);
+                ushort peHeaderOffset = reader.ReadUInt16();
+
+                reader.BaseStream.Seek(peHeaderOffset + 0x4, SeekOrigin.Begin);
                 ushort peFormat = reader.ReadUInt16();
-                return peFormat == 0x20b;
+
+                return peFormat == 0x8664; // 0x8664는 x64 아키텍처의 값입니다.
             }
         }
     }
