@@ -72,21 +72,27 @@
             // 
             // ProcessPathTextBox
             // 
+            ProcessPathTextBox.AllowDrop = true;
             ProcessPathTextBox.Location = new Point(149, 27);
             ProcessPathTextBox.Name = "ProcessPathTextBox";
             ProcessPathTextBox.ReadOnly = true;
             ProcessPathTextBox.Size = new Size(598, 35);
             ProcessPathTextBox.TabIndex = 0;
             ProcessPathTextBox.TabStop = false;
+            ProcessPathTextBox.DragDrop += ProcessPathTextBox_DragDrop;
+            ProcessPathTextBox.DragEnter += ProcessPathTextBox_DragEnter;
             // 
             // DllPathTextBox
             // 
+            DllPathTextBox.AllowDrop = true;
             DllPathTextBox.Location = new Point(149, 89);
             DllPathTextBox.Name = "DllPathTextBox";
             DllPathTextBox.ReadOnly = true;
             DllPathTextBox.Size = new Size(598, 35);
             DllPathTextBox.TabIndex = 0;
             DllPathTextBox.TabStop = false;
+            DllPathTextBox.DragDrop += DllPathTextBox_DragDrop;
+            DllPathTextBox.DragEnter += DllPathTextBox_DragEnter;
             // 
             // ParametersTextBox
             // 

@@ -172,5 +172,39 @@ namespace InjectorSharp
                 return peFormat == 0x8664; // 0x8664는 x64 아키텍처의 값입니다.
             }
         }
+
+        private void ProcessPathTextBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void ProcessPathTextBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files.Length > 0)
+            {
+                ProcessPathTextBox.Text = files[0]; // 첫 번째 파일의 경로를 사용합니다.
+            }
+        }
+
+        private void DllPathTextBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void DllPathTextBox_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (files.Length > 0)
+            {
+                DllPathTextBox.Text = files[0]; // 첫 번째 파일의 경로를 사용합니다.
+            }
+        }
     }
 }
